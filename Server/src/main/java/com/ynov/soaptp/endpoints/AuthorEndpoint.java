@@ -12,8 +12,10 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import javax.annotation.PostConstruct;
+import javax.swing.text.html.Option;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Endpoint
 public class AuthorEndpoint {
@@ -29,6 +31,7 @@ public class AuthorEndpoint {
 
     @PostConstruct
     public void initData() {
+        authorRepository.deleteAll();
         Author author1 = new Author();
         author1.setFirst_name("Geoffrey");
         author1.setLast_name("Clermont");
@@ -49,11 +52,12 @@ public class AuthorEndpoint {
         authorRepository.save(author3);
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAuthorRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAuthorByIdRequest")
     @ResponsePayload
     public GetAuthorByIdResponse getAuthorById(@RequestPayload GetAuthorByIdRequest request) {
         GetAuthorByIdResponse response = new GetAuthorByIdResponse();
-        // response.setAuthor(authorRepository.findById(request.getId()));
+        Optional<Author> author = authorRepository.findById(request.getId());
+        response.setAuthor(author.get());
         return response;
     }
 
