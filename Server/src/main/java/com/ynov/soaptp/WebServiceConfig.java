@@ -31,8 +31,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     public DefaultWsdl11Definition authorsWsdl11Definition(XsdSchema authorsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("AuthorPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://nantes.ynov.com/soap/author");
+        wsdl11Definition.setLocationUri("/ws/author");
+        wsdl11Definition.setTargetNamespace("http://ynov.com/soaptp/author");
         wsdl11Definition.setSchema(authorsSchema);
         return wsdl11Definition;
     }
@@ -49,7 +49,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("BooksPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://nantes.ynov.com/soap/books");
+        wsdl11Definition.setTargetNamespace("http://ynov.com/soaptp/books");
         wsdl11Definition.setSchema(booksSchema);
         return wsdl11Definition;
     }

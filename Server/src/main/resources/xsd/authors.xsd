@@ -1,6 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://ynov.com/soap/author"
-           targetNamespace="http://ynov.com/soap/author"
+           xmlns:tns="http://ynov.com/soaptp/author"
+           targetNamespace="http://ynov.com/soaptp/author"
            elementFormDefault="qualified">
 
     <xs:complexType name="author">

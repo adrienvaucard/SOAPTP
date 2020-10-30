@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "author")
-public class Author {
+@Table(name = "authors")
+public class Author extends com.ynov.soaptp.author.Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column
     private String first_name;
@@ -20,7 +20,7 @@ public class Author {
     @Column
     private Date birth_date;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

@@ -4,10 +4,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "book")
-public class Book {
-
+@Table(name = "books")
+public class Book extends com.ynov.soaptp.book.Book {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column
     private String isbn;
 
     @Column
@@ -21,6 +24,14 @@ public class Book {
 
     @Column
     private Date publication_date;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getIsbn() {
         return isbn;

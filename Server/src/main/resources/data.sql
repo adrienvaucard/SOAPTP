@@ -7,9 +7,9 @@ CREATE TABLE books (
 ) ENGINE=INNODB;
 
 INSERT INTO books(isbn, title, language, author) VALUES
-(978-0244761622, 'Le petit livre rouge: Citations du Président Mao Zedong', 'FR', 'Mao Zedong'),
-(978-2853002943, 'La Bible', 'FR', 'Geoffrey CLERMONT'),
-(978-0132350884, 'Clean Code', 'EN', 'Robert MARTIN');
+('978-0244761622', 'Le petit livre rouge: Citations du Président Mao Zedong', 'FR', 'Mao Zedong'),
+('978-2853002943', 'La Bible', 'FR', 'Geoffrey CLERMONT'),
+('978-0132350884', 'Clean Code', 'EN', 'Robert MARTIN');
 
 CREATE TABLE authors (
    id VARCHAR(250) NOT NULL AUTO_INCREMENT PRIMARY KEY,

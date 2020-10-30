@@ -1,7 +1,7 @@
 package com.ynov.soaptp.endpoints;
 
-import com.ynov.soap.book.DeleteBookRequest;
-import com.ynov.soap.book.DeleteBookResponse;
+import com.ynov.soaptp.book.*;
+import com.ynov.soaptp.book.GetBookByIdResponse;
 import com.ynov.soaptp.entities.Book;
 import com.ynov.soaptp.repositories.AuthorRepository;
 import com.ynov.soaptp.repositories.BookRepository;
@@ -12,10 +12,13 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.annotation.PostConstruct;
+import java.util.Optional;
+
 @Endpoint
 public class BookEndpoint {
 
-    private static final String NAMESPACE_URI = "http://ynov.com/soap/book";
+    private static final String NAMESPACE_URI = "http://ynov.com/soaptp/book";
 
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
@@ -26,21 +29,33 @@ public class BookEndpoint {
         this.authorRepository = authorRepository;
     }
 
-    /*@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookByTitleRequest")
+
+    @PostConstruct
+    public void initData() {
+        //Book book1 = new Book();
+        //book1.setTitle("La Bible");
+        //book1.setLanguage("FR");
+        //book1.setIsbn("978-0244761622");
+        //book1.setAuthor();
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookById")
     @ResponsePayload
-    public GetBookResponse getBookByTitle(@RequestPayload GetBookByTitleRequest request) {
-        /// TODO
-        return null;
-    }*/
+    public GetBookByIdResponse getBookById() {
+        GetBookByIdResponse response = new GetBookByIdResponse();
+        // response.setBook(bookRepository.findById(request.getBook().getId()));
+        return response;
+    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBooksRequest")
     @ResponsePayload
-    public Object getBooks(@RequestPayload Object request) {
-        bookRepository.findAll();
+    public GetAllBooksResponse getBooks(@RequestPayload GetAllBooksResponse request) {
+        GetAllBooksResponse response = new GetAllBooksResponse();
+        response.getBook().addAll(bookRepository.findAll());
         return null;
     }
 
-    /*@PayloadRoot(namespace = NAMESPACE_URI, localPart = "addBookRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addBookRequest")
     @ResponsePayload
     public AddBookResponse addBook(@RequestPayload AddBookRequest request) {
 
@@ -54,7 +69,7 @@ public class BookEndpoint {
 
         /// TODO
         return null;
-    }*/
+    }
 
     /**
      * Fonction de conversion d'objet de la base de données vers le WebService.
