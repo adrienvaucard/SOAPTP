@@ -13,6 +13,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import javax.annotation.PostConstruct;
 import javax.swing.text.html.Option;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -33,19 +34,16 @@ public class AuthorEndpoint {
     public void initData() {
         authorRepository.deleteAll();
         Author author1 = new Author();
-        author1.setFirst_name("Geoffrey");
-        author1.setLast_name("Clermont");
-        author1.setBirth_date(new Date(System.currentTimeMillis()));
+        author1.setFirstName("Geoffrey");
+        author1.setLastName("Clermont");
 
         Author author2 = new Author();
-        author2.setFirst_name("Mao");
-        author2.setLast_name("Zedong");
-        author2.setBirth_date(new Date(System.currentTimeMillis()));
+        author2.setFirstName("Mao");
+        author2.setLastName("Zedong");
 
         Author author3 = new Author();
-        author3.setFirst_name("Jesus");
-        author3.setLast_name("Christ");
-        author3.setBirth_date(new Date(System.currentTimeMillis()));
+        author3.setFirstName("Jesus");
+        author3.setLastName("Christ");
 
         authorRepository.save(author1);
         authorRepository.save(author2);

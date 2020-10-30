@@ -1,7 +1,9 @@
 package com.ynov.soaptp.endpoints;
 
+import com.ynov.soaptp.author.GetAuthorByIdResponse;
 import com.ynov.soaptp.book.*;
 import com.ynov.soaptp.book.GetBookByIdResponse;
+import com.ynov.soaptp.entities.Author;
 import com.ynov.soaptp.entities.Book;
 import com.ynov.soaptp.repositories.AuthorRepository;
 import com.ynov.soaptp.repositories.BookRepository;
@@ -32,18 +34,18 @@ public class BookEndpoint {
 
     @PostConstruct
     public void initData() {
-        //Book book1 = new Book();
-        //book1.setTitle("La Bible");
-        //book1.setLanguage("FR");
-        //book1.setIsbn("978-0244761622");
-        //book1.setAuthor();
+        Book book1 = new Book();
+        book1.setTitle("La Bible");
+        book1.setLanguage("FR");
+        book1.setIsbn("978-0244761622");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookById")
     @ResponsePayload
-    public GetBookByIdResponse getBookById() {
+    public GetBookByIdResponse getBookById(@RequestPayload GetBookByIdResponse request) {
         GetBookByIdResponse response = new GetBookByIdResponse();
-        // response.setBook(bookRepository.findById(request.getBook().getId()));
+        Optional<Book> book = bookRepository.findById(request.getBook().getId());
+        response.setBook(book.get());
         return response;
     }
 
@@ -52,7 +54,7 @@ public class BookEndpoint {
     public GetAllBooksResponse getBooks(@RequestPayload GetAllBooksResponse request) {
         GetAllBooksResponse response = new GetAllBooksResponse();
         response.getBook().addAll(bookRepository.findAll());
-        return null;
+        return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addBookRequest")

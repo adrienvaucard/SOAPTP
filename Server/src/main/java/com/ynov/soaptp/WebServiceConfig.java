@@ -47,9 +47,9 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean(name = "book")
     public DefaultWsdl11Definition booksWsdl11Definition(XsdSchema booksSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("BooksPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://ynov.com/soaptp/books");
+        wsdl11Definition.setPortTypeName("BookPort");
+        wsdl11Definition.setLocationUri("/ws/book");
+        wsdl11Definition.setTargetNamespace("http://ynov.com/soaptp/book");
         wsdl11Definition.setSchema(booksSchema);
         return wsdl11Definition;
     }
