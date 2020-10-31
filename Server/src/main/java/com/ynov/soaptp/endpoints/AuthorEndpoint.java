@@ -32,21 +32,20 @@ public class AuthorEndpoint {
 
     @PostConstruct
     public void initData() {
-        authorRepository.deleteAll();
+        //authorRepository.deleteAll();
         Author author1 = new Author();
-        author1.setFirstName("Geoffrey");
-        author1.setLastName("Clermont");
+        author1.setFirstName("Idriss");
+        author1.setLastName("Aberkane");
+        authorRepository.save(author1);
 
         Author author2 = new Author();
         author2.setFirstName("Mao");
         author2.setLastName("Zedong");
+        authorRepository.save(author2);
 
         Author author3 = new Author();
         author3.setFirstName("Jesus");
         author3.setLastName("Christ");
-
-        authorRepository.save(author1);
-        authorRepository.save(author2);
         authorRepository.save(author3);
     }
 
